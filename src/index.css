@@ -1,68 +1,122 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+    /* Colors */
+    --main-color: #101828;
+    --text-color: #475467;
+    --gray-color: #6C717B;
+    --gray-light-color: #DADDE1;
+    --button-color: #E44848;
+    --button-hover-color: #D84343;
+    --rating-color: #FFC531;
+    --badges-color: #F2F4F7;
+    --inputs-color: #F7F7F7;
+    --white-color: #FFFFFF;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+    /* Typography */
+    --font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    --font-size-base: 16px;
+    --font-size-small: 14px;
+    --font-size-xsmall: 12px;
+    --line-height-base: 24px;
+    --line-height-small: 20px;
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-bold: 600;
+    --line-height-percent-base: 150%;
+    --line-height-percent-small: 125%;
+    --line-height-percent-xsmall: 120%;
+    --letter-spacing: -0.08px;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    /* Border radius */
+    --border-radius-sm: 12px;
+    --border-radius-lg: 100px;
+    --border-radius-xl: 200px;
+
+    /* Spacing */
+    --spacing-xs: 8px;
+    --spacing-sm: 10px;
+    --spacing-md: 16px;
+    --spacing-lg: 18px;
+    --spacing-xl: 24px;
+    --spacing-xxl: 32px;
+    --spacing-xxxl: 64px;
+
+    /* Padding */
+    --padding-button-default: 16px 32px;
+    --padding-button-search: 16px 60px;
+    --padding-badge: 12px 18px;
+    --padding-input: 18px;
+    --padding-header: 24px 64px;
+
+    /* UI elements */
+    --calendar-width: 276px;
+    --calendar-height: 284px;
+    --input-height: 60px;
+    --input-width: 527px;
+    --button-width: 166px;
+    --icon-size-small: 16px;
+    --icon-size-medium: 20px;
+    --icon-size-large: 24px;
+    --icon-size-xlarge: 32px;
+
+    /* Media queries */
+    --breakpoint-sm: 576px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 992px;
+    --breakpoint-xl: 1200px;
+    --breakpoint-xxl: 1440px;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.button-base {
+    display: inline-flex;
+    padding: var(--padding-button-default);
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-sm);
+    border-radius: var(--border-radius-xl);
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-base);
+    letter-spacing: var(--letter-spacing);
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.badge {
+    display: inline-flex;
+    padding: var(--padding-badge);
+    align-items: center;
+    gap: var(--spacing-xs);
+    border-radius: var(--border-radius-lg);
+    background: var(--badges-color);
+    mix-blend-mode: multiply;
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-small);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.input-field {
+    display: flex;
+    width: var(--input-width);
+    padding: var(--spacing-lg) var(--spacing-lg);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+    border-radius: var(--border-radius-sm);
+    background: var(--inputs-color);
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-base);
 }
