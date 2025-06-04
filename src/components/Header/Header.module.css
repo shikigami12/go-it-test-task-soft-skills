@@ -1,0 +1,33 @@
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 64px;
+  background-color: var(--white-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navigation {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+
+.navLink {
+  color: var(--main-color);
+  text-decoration: none;
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  line-height: var(--line-height-percent-base);
+}
+
+.navLink.active {
+  color: var(--button-color);
+}
+
+.navLink:hover {
+  color: var(--button-color);
+}
