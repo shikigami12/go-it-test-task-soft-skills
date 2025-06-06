@@ -14,20 +14,14 @@ import CamperCard from '../../components/CamperCard/CamperCard';
 import Loader from '../../components/Loader/Loader';
 import {InputField} from "../../components/InputField/InputField.tsx";
 import {FilterItem} from "../../components/FilterItem/FilterItem.tsx";
-
-interface FilterValue {
-    name: string;
-    active: boolean;
-    icon: string;
-    value: string;
-}
+import {FeatureItem} from "../../models/CamperFeatures.ts";
 
 const CatalogPage = () => {
     const dispatch = useDispatch<AppDispatch>();
     const {items, isLoading, filters} = useSelector((state: RootState) => state.campers);
     const [page, setCatalogPage] = useState(1);
-    const [camperFormFilter, setCamperFormFilter] = useState<FilterValue[]>(() => {
-        const initialFilter: FilterValue[] = [
+    const [camperFormFilter, setCamperFormFilter] = useState<FeatureItem[]>(() => {
+        const initialFilter: FeatureItem[] = [
             {name: 'Alcove', active: false, icon: 'alcove', value: 'alcove'},
             {name: 'Van', active: false, icon: 'van', value: 'panelTruck'},
             {name: 'Fully Integrated', active: false, icon: 'integrated', value: 'fullyIntegrated'}
@@ -40,8 +34,8 @@ const CatalogPage = () => {
         }
         return initialFilter;
     });
-    const [camperEquipmentFilter, setCamperEquipmentFilter] = useState<FilterValue[]>(() => {
-        const initialFilter: FilterValue[] = [
+    const [camperEquipmentFilter, setCamperEquipmentFilter] = useState<FeatureItem[]>(() => {
+        const initialFilter: FeatureItem[] = [
             {name: 'AC', active: false, icon: 'ac', value: 'AC'},
             {name: 'Kitchen', active: false, icon: 'kitchen', value: 'kitchen'},
             {name: 'Bathroom', active: false, icon: 'bathroom', value: 'bathroom'},

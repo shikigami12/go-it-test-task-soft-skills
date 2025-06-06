@@ -5,8 +5,9 @@ import css from './CamperCard.module.css';
 import {Camper} from "../../models/Camper.ts";
 import {Link} from "react-router-dom";
 import {Icon} from "../Icon/Icon.tsx";
-import {Category} from "../Category/Category.tsx";
-import {MouseEvent, useEffect, useState} from "react";
+import {Feature} from "../Feature/Feature.tsx";
+import {MouseEvent} from "react";
+import {formatPrice} from "../../utils/utils.ts";
 
 interface CamperCardProps {
     camper: Camper;
@@ -16,38 +17,6 @@ const CamperCard = ({camper}: CamperCardProps) => {
     const dispatch = useDispatch();
     const favorites = useSelector((state: RootState) => state.favorites.items);
     const isFavorite = favorites.some(item => item.id === camper.id);
-    const [camperFeaturesState, setCamperFeaturesState] = useState<string[]>([]);
-
-    useEffect(() => {
-        if (!camper) {
-            return;
-        }
-
-        const camperFeatures: string[] = [];
-
-        for (const key in camper) {
-            if (Object.prototype.hasOwnProperty.call(camper, key) && Boolean(camper[key as keyof Camper])) {
-                switch (key) {
-                    case 'AC':
-                    case 'bathroom':
-                    case 'kitchen':
-                    case 'TV':
-                    case 'radio':
-                    case 'refrigerator':
-                    case 'microwave':
-                    case 'gas':
-                    case 'water':
-                        camperFeatures.push(key);
-                        break;
-                    default:
-                        // Skip other properties that are not features
-                        break;
-                }
-            }
-        }
-
-        setCamperFeaturesState(camperFeatures);
-    }, [camper]);
 
     const handleFavoriteToggle = (e: MouseEvent) => {
         e.preventDefault();
@@ -58,10 +27,6 @@ const CamperCard = ({camper}: CamperCardProps) => {
         } else {
             dispatch(addToFavorites(camper));
         }
-    };
-
-    const formatPrice = (price: number) => {
-        return price.toString() + '.00';
     };
 
     return (
@@ -112,8 +77,8 @@ const CamperCard = ({camper}: CamperCardProps) => {
         </span>
 
                 <div className={css.details}>
-                    {camperFeaturesState?.length && camperFeaturesState.map((feature, index) => (
-                        <Category key={index} icon={feature}/>
+                    {camper.features?.features?.length && camper.features.features.map((feature, index) => (
+                        <Feature key={index} feature={feature} />
                     ))}
                 </div>
 

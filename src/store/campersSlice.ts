@@ -1,6 +1,7 @@
-import {createSlice, createAsyncThunk, PayloadAction} from '@reduxjs/toolkit';
+import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import apiClient from '../clients/ApiClient';
 import {Camper} from '../models/Camper';
+import {CamperFeatures, FeatureItem} from "../models/CamperFeatures.ts";
 
 interface CampersState {
     items: Camper[];
@@ -26,6 +27,95 @@ const initialState: CampersState = {
         features: [],
     },
     page: 1,
+};
+
+const mapCamperToCamperWithFeatures = (camper: Camper): Camper => {
+    const features = {} as CamperFeatures;
+    features.features = [];
+    for (const key in camper) {
+        if (Object.prototype.hasOwnProperty.call(camper, key) && Boolean(camper[key as keyof Camper])) {
+            switch (key) {
+                case 'AC':
+                    features.features.push({
+                        name: 'AC',
+                        icon: 'ac',
+                        value: 'AC'
+                    } as FeatureItem);
+                    break;
+                case 'bathroom':
+                    features.features.push({
+                        name: 'Bathroom',
+                        icon: 'bathroom',
+                        value: 'bathroom'
+                    } as FeatureItem);
+                    break;
+                case 'kitchen':
+                    features.features.push({
+                        name: 'Kitchen',
+                        icon: 'kitchen',
+                        value: 'kitchen'
+                    } as FeatureItem);
+                    break;
+                case 'TV':
+                    features.features.push({
+                        name: 'TV',
+                        icon: 'tv',
+                        value: 'TV'
+                    } as FeatureItem);
+                    break;
+                case 'radio':
+                    features.features.push({
+                        name: 'Radio',
+                        icon: 'radio',
+                        value: 'radio'
+                    } as FeatureItem);
+                    break;
+                case 'refrigerator':
+                    features.features.push({
+                        name: 'Refrigerator',
+                        icon: 'refrigerator',
+                        value: 'refrigerator'
+                    } as FeatureItem);
+                    break;
+                case 'microwave':
+                    features.features.push({
+                        name: 'Microwave',
+                        icon: 'microwave',
+                        value: 'microwave'
+                    } as FeatureItem);
+                    break;
+                case 'gas':
+                    features.features.push({
+                        name: 'Petrol',
+                        icon: 'gas',
+                        value: 'gas'
+                    } as FeatureItem);
+                    break;
+                case 'water':
+                    features.features.push({
+                        name: 'Water',
+                        icon: 'water',
+                        value: 'water'
+                    } as FeatureItem);
+                    break;
+                default:
+                    // Skip other properties that are not features
+                    break;
+            }
+        }
+    }
+
+    features.details = {
+        form: camper.form,
+        length: camper.length,
+        width: camper.width,
+        height: camper.height,
+        tank: camper.tank,
+        consumption: camper.consumption
+    };
+
+    camper.features = features;
+    return camper;
 };
 
 export const fetchCampers = createAsyncThunk(
@@ -54,7 +144,7 @@ export const fetchCampers = createAsyncThunk(
             }
 
             const response = await apiClient.getCampers(params);
-            return response.items;
+            return response.items.map(camper => mapCamperToCamperWithFeatures(camper));
         } catch (error) {
             console.error('Error fetching campers:', error);
             return rejectWithValue('Failed to fetch campers');
@@ -66,8 +156,8 @@ export const fetchCamperById = createAsyncThunk(
     'campers/fetchCamperById',
     async (id: string, {rejectWithValue}) => {
         try {
-            const response = await apiClient.getCamperById(id);
-            return response;
+            const result = await apiClient.getCamperById(id);
+            return mapCamperToCamperWithFeatures(result);
         } catch (error) {
             console.error('Error fetching camper by ID:', error);
             return rejectWithValue('Failed to fetch camper details');

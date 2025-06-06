@@ -8,6 +8,8 @@ import HomePage from './pages/HomePage/HomePage';
 import CatalogPage from './pages/CatalogPage/CatalogPage';
 import CamperDetailsPage from './pages/CamperDetailsPage/CamperDetailsPage';
 import './App.css';
+import {CamperFeaturesDetails} from "./components/CamperFeaturesDetails/CamperFeaturesDetails.tsx";
+import {CamperReviewsDetails} from "./components/CamperReviewsDetails/CamperReviewsDetails.tsx";
 
 function App() {
   return (
@@ -18,7 +20,10 @@ function App() {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/catalog" element={<CatalogPage />} />
-              <Route path="/catalog/:id" element={<CamperDetailsPage />} />
+              <Route path="/catalog/:id" element={<CamperDetailsPage />} >
+                <Route path="features" element={<CamperFeaturesDetails />} />
+                <Route path="reviews" element={<CamperReviewsDetails />} />
+            </Route>
             </Routes>
           </main>
         </div>

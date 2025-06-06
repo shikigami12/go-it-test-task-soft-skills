@@ -1,5 +1,6 @@
 import { GalleryImage } from './GalleryImage';
 import { Review } from './Review';
+import {CamperFeatures} from "./CamperFeatures.ts";
 
 export interface Camper {
   id: string;
@@ -27,4 +28,5 @@ export interface Camper {
   water: boolean;
   gallery: GalleryImage[];
   reviews: Review[];
+  features?: CamperFeatures;
 }
