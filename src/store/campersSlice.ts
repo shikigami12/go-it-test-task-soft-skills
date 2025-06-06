@@ -2,6 +2,7 @@ import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import apiClient from '../clients/ApiClient';
 import {Camper} from '../models/Camper';
 import {CamperFeatures, FeatureItem} from "../models/CamperFeatures.ts";
+import {AxiosError} from "axios";
 
 interface CampersState {
     items: Camper[];
@@ -164,7 +165,13 @@ export const fetchCamperById = createAsyncThunk(
             const result = await apiClient.getCamperById(id);
             return mapCamperToCamperWithFeatures(result);
         } catch (error) {
-            console.error('Error fetching camper by ID:', error);
+            const catchError = error as AxiosError;
+            if (catchError.status === 404) {
+                // Handle 404 error specifically, e.g., redirect to NotFound page
+                console.warn('Camper not found:', id);
+                return rejectWithValue('Camper not found');
+            }
+            console.error('Error fetching camper by ID:', catchError);
             return rejectWithValue('Failed to fetch camper details');
         }
     }
@@ -193,9 +200,6 @@ const campersSlice = createSlice({
             } else {
                 state.filters.features.push(feature);
             }
-        },
-        clearFilters: (state) => {
-            state.filters = initialState.filters;
         },
         resetCampers: (state) => {
             state.items = [];
@@ -231,6 +235,8 @@ const campersSlice = createSlice({
             .addCase(fetchCamperById.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload as string;
+                // Reset currentCamper to null when fetch fails to ensure proper redirect to NotFound page
+                state.currentCamper = null;
             });
     },
 });
@@ -240,8 +246,7 @@ export const {
     setFormFilter,
     toggleFeatureFilter,
     setPage,
-    resetCampers,
-    clearFilters
+    resetCampers
 } = campersSlice.actions;
 
 export default campersSlice.reducer;

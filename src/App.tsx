@@ -7,6 +7,7 @@ import Header from './components/Header/Header';
 import HomePage from './pages/HomePage/HomePage';
 import CatalogPage from './pages/CatalogPage/CatalogPage';
 import CamperDetailsPage from './pages/CamperDetailsPage/CamperDetailsPage';
+import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import './App.css';
 import {CamperFeaturesDetails} from "./components/CamperFeaturesDetails/CamperFeaturesDetails.tsx";
 import {CamperReviewsDetails} from "./components/CamperReviewsDetails/CamperReviewsDetails.tsx";
@@ -24,6 +25,7 @@ function App() {
                 <Route path="features" element={<CamperFeaturesDetails />} />
                 <Route path="reviews" element={<CamperReviewsDetails />} />
             </Route>
+              <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </main>
         </div>

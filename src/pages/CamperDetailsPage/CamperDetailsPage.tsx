@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import {NavLink, Outlet, useLocation, useParams, useNavigate} from 'react-router-dom';
+import {Outlet, useLocation, useParams, useNavigate} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchCamperById} from '../../store/campersSlice';
 import {RootState, AppDispatch} from '../../store/store';
@@ -20,9 +20,11 @@ const CamperDetailsPage = () => {
 
     useEffect(() => {
         if (id) {
-            dispatch(fetchCamperById(id));
+            dispatch(fetchCamperById(id))
+                .unwrap()
+                .catch(() => navigate('/not-found'));
         }
-    }, [dispatch, id]);
+    }, [dispatch, id, navigate]);
 
     useEffect(() => {
         if (!featuresActive) {
@@ -81,10 +83,10 @@ const CamperDetailsPage = () => {
                 <div className={css.moreDetails}>
                     <ul className={css.tabs}>
                         <li className={featuresActive ? css.active : ''} onClick={() => handleFeatureToggle(true)}>
-                            <NavLink  to={"features"} state={location}>Features</NavLink >
+                            Features
                         </li>
                         <li className={!featuresActive ? css.active : ''} onClick={() => handleFeatureToggle(false)}>
-                            <NavLink  to={"reviews"} state={location}>Reviews</NavLink >
+                            Reviews
                         </li>
                     </ul>
                     <div className={css.detailsContent}>
@@ -103,3 +105,4 @@ const CamperDetailsPage = () => {
 };
 
 export default CamperDetailsPage;
+
