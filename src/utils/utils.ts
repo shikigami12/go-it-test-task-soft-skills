@@ -1,3 +1,3 @@
 export const formatPrice = (price: number) => {
-    return price.toString() + '.00';
+    return price.toString() + ',00';
 };

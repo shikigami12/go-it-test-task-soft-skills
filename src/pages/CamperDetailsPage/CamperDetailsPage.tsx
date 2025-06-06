@@ -35,6 +35,15 @@ const CamperDetailsPage = () => {
         navigate('features');
     }, [featuresActive, navigate]);
 
+    useEffect(() => {
+        if (!currentCamper) {
+            return;
+        }
+
+        // update the document title with camper name
+        document.title = `TravelTrucks - Campervan Rental in Ukraine - ${currentCamper.name} - €${formatPrice(currentCamper.price)}`;
+    }, [currentCamper]);
+
     const handleFeatureToggle = (isFeatureTab: boolean) => {
         setFeaturesActive(isFeatureTab);
     }
