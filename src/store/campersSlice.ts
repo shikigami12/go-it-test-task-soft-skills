@@ -150,7 +150,10 @@ export const fetchCampers = createAsyncThunk(
             }
 
             const response = await apiClient.getCampers(params);
-            return {total: response.total, campers: response.items.map(camper => mapCamperToCamperWithFeatures(camper))};
+            return {
+                total: response.total,
+                campers: response.items.map(camper => mapCamperToCamperWithFeatures(camper))
+            };
         } catch (error) {
             console.error('Error fetching campers:', error);
             return rejectWithValue('Failed to fetch campers');

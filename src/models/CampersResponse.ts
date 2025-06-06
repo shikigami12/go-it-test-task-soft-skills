@@ -1,6 +1,6 @@
-import { Camper } from './Camper';
+import {Camper} from './Camper';
 
 export interface CampersResponse {
-  total: number;
-  items: Camper[];
+    total: number;
+    items: Camper[];
 }

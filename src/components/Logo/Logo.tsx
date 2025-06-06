@@ -6,7 +6,7 @@ export const Logo = () => {
     return (
         <>
             <Link to="/" className={css.logo}>
-                <img src={logo} alt="TravelTrucks" />
+                <img src={logo} alt="TravelTrucks"/>
             </Link>
         </>
     );

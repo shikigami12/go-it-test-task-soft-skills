@@ -21,7 +21,8 @@ export const FilterItem = ({icon, text, onClick, value, active = false}: FilterI
 
     return (
         <>
-            <button className={active ? css.filterItemActive : css.filterItem} onClick={(event) => onClick(event, value)}>
+            <button className={active ? css.filterItemActive : css.filterItem}
+                    onClick={(event) => onClick(event, value)}>
                 {icon && <Icon name={icon} style={iconStyle}/>}
                 <span className={css.filterText}>{text}</span>
             </button>

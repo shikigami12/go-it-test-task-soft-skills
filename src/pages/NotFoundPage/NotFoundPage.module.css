@@ -1,47 +1,47 @@
 .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 64px 16px;
-  min-height: calc(100vh - 200px);
-  text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 64px 16px;
+    min-height: calc(100vh - 200px);
+    text-align: center;
 }
 
 .title {
-  font-size: 120px;
-  font-weight: 700;
-  color: var(--button-color);
-  margin: 0;
-  line-height: 1;
+    font-size: 120px;
+    font-weight: 700;
+    color: var(--button-color);
+    margin: 0;
+    line-height: 1;
 }
 
 .subtitle {
-  font-size: 32px;
-  font-weight: 600;
-  color: var(--main-color);
-  margin: 16px 0;
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--main-color);
+    margin: 16px 0;
 }
 
 .text {
-  font-size: 18px;
-  max-width: 500px;
-  color: var(--text-color);
-  margin-bottom: 32px;
+    font-size: 18px;
+    max-width: 500px;
+    color: var(--text-color);
+    margin-bottom: 32px;
 }
 
 .link {
-  display: inline-block;
-  background-color: var(--button-color);
-  color: white;
-  padding: 14px 32px;
-  border-radius: var(--border-radius-sm);
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 16px;
-  transition: background-color 0.2s ease;
+    display: inline-block;
+    background-color: var(--button-color);
+    color: white;
+    padding: 14px 32px;
+    border-radius: var(--border-radius-sm);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    transition: background-color 0.2s ease;
 }
 
 .link:hover {
-  background-color: var(--button-hover-color, #F59256);
+    background-color: var(--button-hover-color, #F59256);
 }

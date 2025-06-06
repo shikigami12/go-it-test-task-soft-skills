@@ -1,14 +1,13 @@
 import {useEffect, useState} from 'react';
-import {Outlet, useLocation, useParams, useNavigate} from 'react-router-dom';
+import {Outlet, useLocation, useNavigate, useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchCamperById} from '../../store/campersSlice';
-import {RootState, AppDispatch} from '../../store/store';
+import {AppDispatch, RootState} from '../../store/store';
 import css from './CamperDetailsPage.module.css';
 import Loader from '../../components/Loader/Loader';
 import {Icon} from "../../components/Icon/Icon.tsx";
 import {formatPrice} from "../../utils/utils.ts";
-import BookingForm from "../../components/BookingForm/BookingForm.tsx";
-import { BookingFormValues } from "../../components/BookingForm/BookingForm.tsx";
+import BookingForm, {BookingFormValues} from "../../components/BookingForm/BookingForm.tsx";
 
 const CamperDetailsPage = () => {
     const location = useLocation();
@@ -71,12 +70,12 @@ const CamperDetailsPage = () => {
 
                     <div className={css.imageContainer}>
                         {currentCamper.gallery && currentCamper.gallery.length > 0 && currentCamper.gallery.map((image, iter) => (
-                                <img
-                                    key={iter}
-                                    src={image.thumb}
-                                    alt={currentCamper.name}
-                                    className={css.image}
-                                />))}
+                            <img
+                                key={iter}
+                                src={image.thumb}
+                                alt={currentCamper.name}
+                                className={css.image}
+                            />))}
                     </div>
                     <p className={css.description}>{currentCamper.description}</p>
                 </div>
@@ -90,12 +89,12 @@ const CamperDetailsPage = () => {
                         </li>
                     </ul>
                     <div className={css.detailsContent}>
-                        <Outlet />
+                        <Outlet/>
                     </div>
                     <div className={css.bookingForm}>
                         <h3 className={css.bookingTitle}>Book your campervan now</h3>
                         <p className={css.bookingSubtitle}>Stay connected! We are always ready to help you.</p>
-                        <BookingForm onSubmit={handleFormSubmit} />
+                        <BookingForm onSubmit={handleFormSubmit}/>
                     </div>
                 </div>
             </>)}

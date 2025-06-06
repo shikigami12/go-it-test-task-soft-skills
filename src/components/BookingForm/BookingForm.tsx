@@ -1,4 +1,4 @@
-import {Formik, Form, Field, ErrorMessage, FormikHelpers} from 'formik';
+import {ErrorMessage, Field, Form, Formik, FormikHelpers} from 'formik';
 import * as Yup from 'yup';
 import css from './BookingForm.module.css';
 import DatePicker from 'react-datepicker';

@@ -1,14 +1,14 @@
-import {ChangeEvent, useEffect, useState, MouseEvent} from 'react';
+import {ChangeEvent, MouseEvent, useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {
     fetchCampers,
-    setLocationFilter,
-    setFormFilter,
-    toggleFeatureFilter,
     resetCampers,
-    setPage
+    setFormFilter,
+    setLocationFilter,
+    setPage,
+    toggleFeatureFilter
 } from '../../store/campersSlice';
-import {RootState, AppDispatch} from '../../store/store';
+import {AppDispatch, RootState} from '../../store/store';
 import css from './CatalogPage.module.css';
 import CamperCard from '../../components/CamperCard/CamperCard';
 import Loader from '../../components/Loader/Loader';
@@ -163,7 +163,7 @@ const CatalogPage = () => {
                                     <p>No campers found matching your criteria.</p>
                                 )}
                             </div>
-                            {items.length > 0 && totalCount > items.length &&  (
+                            {items.length > 0 && totalCount > items.length && (
                                 <button className={css.loadMoreBtn} onClick={handleLoadMore}>
                                     Load more
                                 </button>

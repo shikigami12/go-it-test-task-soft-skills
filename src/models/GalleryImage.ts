@@ -1,5 +1,5 @@
 export interface GalleryImage {
-  thumb: string;
-  original: string;
+    thumb: string;
+    original: string;
 }
 
