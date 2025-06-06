@@ -6,7 +6,6 @@ import {RootState} from "../../store/store.ts";
 export const CamperFeaturesDetails = () => {
     const {currentCamper} = useSelector((state: RootState) => state.campers);
 
-
     return (
         <>
             <div className={css.featuresDetail}>
