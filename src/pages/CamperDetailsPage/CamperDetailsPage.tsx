@@ -1,13 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  MapPin,
-  CheckCircle,
-  XCircle,
-  Star,
-  UserCircle
-} from 'lucide-react';
 import { toast } from 'react-toastify';
 import { fetchCamperById } from '../../store/campersSlice';
 import { RootState, AppDispatch } from '../../store/store';

@@ -27,7 +27,4 @@ export interface Camper {
   water: boolean;
   gallery: GalleryImage[];
   reviews: Review[];
-  adults?: number;
-  children?: number;
-  features?: string[];
 }

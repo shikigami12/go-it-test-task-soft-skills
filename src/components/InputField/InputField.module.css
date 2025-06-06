@@ -1,0 +1,31 @@
+.inputLabel {
+    display: flex;
+    position: relative;
+}
+
+.inputLabel svg {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+}
+
+.input {
+    padding: 16px 46px;
+    border-radius: var(--border-radius-sm);
+    border: none;
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+    color: var(--main-color);
+    width: 100%;
+    box-sizing: border-box;
+    background-color: var(--inputs-color);
+}
+
+.input::placeholder {
+    color: var(--text-color);
+}
+
+.input:focus {
+    outline: none;
+    border: none;
+}

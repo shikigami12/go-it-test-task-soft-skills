@@ -1,135 +1,168 @@
 .camperCard {
-  border-radius: 10px;
-  border: 1px solid var(--gray-light-color);
-  overflow: hidden;
-  display: flex;
-  flex-direction: row;
-  transition: transform 0.2s ease-in-out;
-  padding: 24px;
+    border-radius: 10px;
+    border: 1px solid var(--gray-light-color);
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    transition: transform 0.2s ease-in-out;
+    padding: 24px;
+    gap: 24px;
 }
 
 .camperCard:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(16, 24, 40, 0.1);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(16, 24, 40, 0.1);
 }
 
 .imageContainer {
-  position: relative;
-  height: 320px;
+    position: relative;
+    height: 320px;
     border-radius: 10px;
     overflow: hidden;
-  width: 290px;
+    width: 290px;
 }
 
 .image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.favoriteBtn {
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  cursor: pointer;
+.favoriteBtn,
+.favoriteBtnActive {
+    background: inherit;
+    border: none;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    margin: 0;
 }
 
+.favoriteBtnActive,
 .favoriteBtn:hover {
-  background: rgba(255, 255, 255, 1);
+    color: var(--button-color);
 }
 
 .content {
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 556px;
 }
 
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
 }
 
 .info {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 .title {
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 32px;
-  color: var(--main-color);
-  margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 32px;
+    color: var(--main-color);
+    margin: 0;
+}
+
+.locationContainer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-percent-base);
+    color: var(--main-color);
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
 }
 
 .location {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  font-size: var(--font-size-base);
-  line-height: var(--line-height-base);
-  color: var(--text-color);
+    display: flex;
+    align-items: center;
+    gap: 4px;
 }
 
 .price {
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 28px;
-  color: var(--button-color);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.price span {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 32px;
+    color: var(--main-color);
+}
+
+.description {
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-percent-base);
+    color: var(--text-color);
+    margin: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .details {
-  display: flex;
-  gap: 24px;
+    display: flex;
+    gap: 8px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
 }
 
 .detail {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
 }
 
 .detail .icon {
-  width: 24px;
-  height: 24px;
-  color: var(--text-color);
+    width: 24px;
+    height: 24px;
+    color: var(--text-color);
 }
 
 .detail .label {
-  font-size: var(--font-size-small);
-  line-height: var(--line-height-small);
-  color: var(--text-color);
+    font-size: var(--font-size-small);
+    line-height: var(--line-height-small);
+    color: var(--text-color);
 }
 
 .button {
-  display: inline-flex;
-  padding: 16px 32px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  border-radius: 200px;
-  background-color: var(--button-color);
-  color: var(--white-color);
-  border: none;
-  font-size: var(--font-size-base);
-  font-weight: 500;
-  line-height: var(--line-height-base);
-  cursor: pointer;
-  text-decoration: none;
+    display: inline;
+    padding: 16px 60px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 200px;
+    background-color: var(--button-color);
+    color: var(--white-color);
+    border: none;
+    font-size: var(--font-size-base);
+    font-weight: 500;
+    line-height: var(--line-height-base);
+    cursor: pointer;
+    text-decoration: none;
+    width: fit-content;
 }
 
 .button:hover {
-  background-color: var(--button-hover-color);
+    background-color: var(--button-hover-color);
 }

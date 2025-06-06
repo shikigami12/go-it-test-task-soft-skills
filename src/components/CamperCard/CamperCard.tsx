@@ -1,98 +1,128 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { Heart } from 'lucide-react';
-import { MapPin, Users } from 'lucide-react';
-import { addToFavorites, removeFromFavorites } from '../../store/favoritesSlice';
-import { RootState } from '../../store/store';
-import styles from './CamperCard.module.css';
+import {useDispatch, useSelector} from 'react-redux';
+import {addToFavorites, removeFromFavorites} from '../../store/favoritesSlice';
+import {RootState} from '../../store/store';
+import css from './CamperCard.module.css';
 import {Camper} from "../../models/Camper.ts";
+import {Link} from "react-router-dom";
+import {Icon} from "../Icon/Icon.tsx";
+import {Category} from "../Category/Category.tsx";
+import {MouseEvent, useEffect, useState} from "react";
 
 interface CamperCardProps {
-  camper: Camper;
+    camper: Camper;
 }
 
-const CamperCard = ({ camper }: CamperCardProps) => {
-  const dispatch = useDispatch();
-  const favorites = useSelector((state: RootState) => state.favorites.items);
-  const isFavorite = favorites.some(item => item.id === camper.id);
+const CamperCard = ({camper}: CamperCardProps) => {
+    const dispatch = useDispatch();
+    const favorites = useSelector((state: RootState) => state.favorites.items);
+    const isFavorite = favorites.some(item => item.id === camper.id);
+    const [camperFeaturesState, setCamperFeaturesState] = useState<string[]>([]);
 
-  const handleFavoriteToggle = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
+    useEffect(() => {
+        if (!camper) {
+            return;
+        }
 
-    if (isFavorite) {
-      dispatch(removeFromFavorites(camper.id));
-    } else {
-      dispatch(addToFavorites(camper));
-    }
-  };
+        const camperFeatures: string[] = [];
 
-  const formatPrice = (price: number) => {
-    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + ',00';
-  };
+        for (const key in camper) {
+            if (Object.prototype.hasOwnProperty.call(camper, key) && Boolean(camper[key as keyof Camper])) {
+                switch (key) {
+                    case 'AC':
+                    case 'bathroom':
+                    case 'kitchen':
+                    case 'TV':
+                    case 'radio':
+                    case 'refrigerator':
+                    case 'microwave':
+                    case 'gas':
+                    case 'water':
+                        camperFeatures.push(key);
+                        break;
+                    default:
+                        // Skip other properties that are not features
+                        break;
+                }
+            }
+        }
 
-  const handleShowMore = () => {
-    // Open in a new tab
-    window.open(`/catalog/${camper.id}`, '_blank');
-  };
+        setCamperFeaturesState(camperFeatures);
+    }, [camper]);
 
-  return (
-    <div className={styles.camperCard}>
-      <div className={styles.imageContainer}>
-        <img
-          src={camper.gallery[0].thumb}
-          alt={camper.name}
-          className={styles.image}
-        />
-        <button
-          className={styles.favoriteBtn}
-          onClick={handleFavoriteToggle}
-          aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
-        >
-          <Heart
-            size={24}
-            fill={isFavorite ? '#E44848' : 'transparent'}
-            stroke={isFavorite ? '#E44848' : '#101828'}
-          />
-        </button>
-      </div>
+    const handleFavoriteToggle = (e: MouseEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
 
-      <div className={styles.content}>
-        <div className={styles.header}>
-          <div className={styles.info}>
-            <h2 className={styles.title}>{camper.name}</h2>
-            <div className={styles.location}>
-              <MapPin size={16} />
-              <span>{camper.location}</span>
+        if (isFavorite) {
+            dispatch(removeFromFavorites(camper.id));
+        } else {
+            dispatch(addToFavorites(camper));
+        }
+    };
+
+    const formatPrice = (price: number) => {
+        return price.toString() + '.00';
+    };
+
+    return (
+        <div className={css.camperCard}>
+            <div className={css.imageContainer}>
+                <img
+                    src={camper.gallery[0].thumb}
+                    alt={camper.name}
+                    className={css.image}
+                />
             </div>
-          </div>
-          <div className={styles.price}>
-            €{formatPrice(camper.price)}
-          </div>
+
+            <div className={css.content}>
+                <div className={css.header}>
+                    <div className={css.info}>
+                        <h2 className={css.title}>{camper.name}</h2>
+                    </div>
+                    <div className={css.price}>
+                        <span>€{formatPrice(camper.price)}</span>
+                        <button
+                            className={isFavorite ? css.favoriteBtnActive : css.favoriteBtn}
+                            onClick={handleFavoriteToggle}
+                            aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+                        >
+                            <Icon name={'heart'} style={{width: '26px', height: '24px', fill: 'currentColor'}}/>
+                        </button>
+                    </div>
+                    <div className={css.locationContainer}>
+                        <div className={css.rating}>
+                            <Icon name="star" style={{
+                                width: '16px',
+                                height: '16px',
+                                fill: 'currentColor',
+                                color: 'var(--rating-color)'
+                            }}/>
+                            <span>{camper.rating}</span>
+                            <span className={css.reviews}>({camper.reviews?.length ?? 0} Reviews)</span>
+                        </div>
+                        <div className={css.location}>
+                            <Icon name="map" style={{width: '16px', height: '16px', fill: 'currentColor'}}/>
+                            <span>{camper.location}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <span className={css.description}>
+          {camper.description}
+        </span>
+
+                <div className={css.details}>
+                    {camperFeaturesState?.length && camperFeaturesState.map((feature, index) => (
+                        <Category key={index} icon={feature}/>
+                    ))}
+                </div>
+
+                <Link className={css.button} to={{pathname: `/catalog/${camper.id}`}}>
+                    Show more
+                </Link>
+            </div>
         </div>
-
-        <div className={styles.details}>
-          <div className={styles.detail}>
-            <Users className={styles.icon} />
-            <span className={styles.label}>{camper.adults + camper.children} people</span>
-          </div>
-          {camper.form && (
-            <div className={styles.detail}>
-              <span className={styles.label}>{camper.form}</span>
-            </div>
-          )}
-          {camper.transmission && (
-            <div className={styles.detail}>
-              <span className={styles.label}>{camper.transmission}</span>
-            </div>
-          )}
-        </div>
-
-        <button className={styles.button} onClick={handleShowMore}>
-          Show more
-        </button>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default CamperCard;

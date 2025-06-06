@@ -1,159 +1,118 @@
 .catalogPage {
-  display: flex;
-  flex-direction: column;
-  padding: 64px;
-  gap: 32px;
-}
-
-.header {
-  margin-bottom: 28px;
-}
-
-.title {
-  font-size: 36px;
-  font-weight: var(--font-weight-bold);
-  line-height: 44px;
-  color: var(--main-color);
-  margin-bottom: 8px;
+    display: flex;
+    flex-direction: column;
+    padding: 48px 64px;
+    gap: 32px;
 }
 
 .description {
-  font-size: 18px;
-  line-height: 28px;
-  color: var(--text-color);
+    font-size: 18px;
+    line-height: 28px;
+    color: var(--text-color);
 }
 
 .content {
-  display: flex;
-  gap: 32px;
+    display: flex;
+    gap: 32px;
 }
 
 .filters {
-  width: 360px;
-  flex-shrink: 0;
+    width: 360px;
+    flex-shrink: 0;
 }
 
 .filterSection {
-  padding: 32px;
-  border-radius: var(--border-radius-sm);
-  border: 1px solid var(--gray-light-color);
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 }
 
 .filterTitle {
-  font-size: 20px;
-  font-weight: var(--font-weight-bold);
-  line-height: 24px;
-  color: var(--main-color);
-  margin: 0;
+    font-size: 20px;
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-percent-base);
+    color: var(--main-color);
+    margin: 0;
 }
 
 .filterGroup {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
 .filterLabel {
-  font-weight: var(--font-weight-medium);
-  font-size: var(--font-size-base);
-  line-height: var(--line-height-base);
-  color: var(--main-color);
-}
-
-.input {
-  padding: 16px;
-  border-radius: var(--border-radius-sm);
-  border: 1px solid var(--gray-light-color);
-  font-size: var(--font-size-base);
-  line-height: var(--line-height-base);
-  color: var(--main-color);
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.input::placeholder {
-  color: var(--text-color);
-}
-
-.input:focus {
-  outline: none;
-  border-color: var(--button-color);
-}
-
-.select {
-  padding: 16px;
-  border-radius: var(--border-radius-sm);
-  border: 1px solid var(--gray-light-color);
-  font-size: var(--font-size-base);
-  line-height: var(--line-height-base);
-  color: var(--main-color);
-  width: 100%;
-  background-color: var(--white-color);
-  cursor: pointer;
-}
-
-.select:focus {
-  outline: none;
-  border-color: var(--button-color);
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-percent-base);
+    color: var(--text-color);
 }
 
 .checkboxGroup {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.checkboxLabel {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  font-size: var(--font-size-base);
-  line-height: var(--line-height-base);
-  color: var(--main-color);
-}
-
-.checkbox {
-  width: 18px;
-  height: 18px;
-  accent-color: var(--button-color);
-  cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    gap: 8px 12px;
+    flex-wrap: wrap;
 }
 
 .mainContent {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
 }
 
 .campersGrid {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
 }
 
 .loadMoreBtn {
-  display: inline-flex;
-  padding: 16px 32px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  border-radius: var(--border-radius-xl);
-  border: 1px solid var(--gray-light-color);
-  background-color: var(--white-color);
-  color: var(--main-color);
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-medium);
-  line-height: var(--line-height-base);
-  cursor: pointer;
-  align-self: center;
-  margin-top: 24px;
+    display: inline-flex;
+    padding: 16px 32px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: var(--border-radius-xl);
+    border: 1px solid var(--gray-light-color);
+    background-color: var(--white-color);
+    color: var(--main-color);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-base);
+    cursor: pointer;
+    align-self: center;
+    margin-top: 24px;
 }
 
 .loadMoreBtn:hover {
-  background-color: var(--gray-light-color);
+    border-color: var(--button-color);
+}
+
+.filtersButton {
+    width: var(--button-width);
+    padding: 16px 60px;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--border-radius-xl);
+    border: 1px solid var(--gray-light-color);
+    background-color: var(--button-color);
+    color: var(--white-color);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-base);
+    cursor: pointer;
+    margin-top: 16px;
+}
+
+.filtersButton:hover {
+    background-color: var(--button-hover-color);
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background-color: var(--gray-light-color);
+    margin: 24px 0;
 }

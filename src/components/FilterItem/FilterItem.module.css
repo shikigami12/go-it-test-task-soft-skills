@@ -1,0 +1,23 @@
+.filterItemActive,
+.filterItem {
+    width: 112px;
+    height: 96px;
+    background-color: var(--white-color);
+    border-radius: var(--border-radius-sm);
+    border: 1px solid var(--gray-light-color);
+    color: var(--main-color);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-percent-base);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    gap: 8px;
+    padding: 0;
+}
+
+.filterItemActive{
+    background-color: var(--white-color);
+    border: 1px solid var(--button-hover-color);
+}
