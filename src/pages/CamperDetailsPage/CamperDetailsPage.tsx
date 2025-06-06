@@ -8,6 +8,7 @@ import Loader from '../../components/Loader/Loader';
 import {Icon} from "../../components/Icon/Icon.tsx";
 import {formatPrice} from "../../utils/utils.ts";
 import BookingForm, {BookingFormValues} from "../../components/BookingForm/BookingForm.tsx";
+import {toast} from "react-toastify";
 
 const CamperDetailsPage = () => {
     const location = useLocation();
@@ -39,7 +40,17 @@ const CamperDetailsPage = () => {
     }
 
     const handleFormSubmit = (values: BookingFormValues) => {
+        // show notification from react-toastify the submit logic is not implemented yet
         console.log('Booking form submitted with values:', values);
+        toast.info('Booking form submitted! Thank you for the reservation!', {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true
+        });
+
     };
 
     return (
