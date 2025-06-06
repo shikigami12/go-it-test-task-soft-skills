@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {Camper} from './campersSlice';
+import {Camper} from "../models/Camper.ts";
 
 interface FavoritesState {
     items: Camper[];
@@ -26,7 +26,7 @@ const favoritesSlice = createSlice({
     reducers: {
         addToFavorites: (state, action: PayloadAction<Camper>) => {
             const newItem = action.payload;
-            const existingItem = state.items.find(item => item.id === newItem.id);
+            const existingItem = state.items.find((item: Camper) => item.id === newItem.id);
 
             if (!existingItem) {
                 state.items.push(newItem);
@@ -36,7 +36,7 @@ const favoritesSlice = createSlice({
         },
         removeFromFavorites: (state, action: PayloadAction<string>) => {
             const id = action.payload;
-            state.items = state.items.filter(item => item.id !== id);
+            state.items = state.items.filter((item: Camper) => item.id !== id);
             // Save to localStorage
             localStorage.setItem('favorites', JSON.stringify(state.items));
         },
