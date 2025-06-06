@@ -18,7 +18,7 @@ import {FeatureItem} from "../../models/CamperFeatures.ts";
 
 const CatalogPage = () => {
     const dispatch = useDispatch<AppDispatch>();
-    const {items, isLoading, filters} = useSelector((state: RootState) => state.campers);
+    const {items, isLoading, filters, totalCount} = useSelector((state: RootState) => state.campers);
     const [page, setCatalogPage] = useState(1);
     const [camperFormFilter, setCamperFormFilter] = useState<FeatureItem[]>(() => {
         const initialFilter: FeatureItem[] = [
@@ -68,12 +68,10 @@ const CatalogPage = () => {
     const handleCamperFormChange = (e: MouseEvent<HTMLButtonElement>, val: string) => {
         e.preventDefault();
         dispatch(setFormFilter(val));
-        setCamperFormFilter(prev => {
-            return prev.map(form => ({
-                ...form,
-                active: form.value === val
-            }));
+        camperFormFilter.forEach((filter) => {
+            filter.active = filter.value === val ? !filter.active : false;
         });
+        setCamperFormFilter(camperFormFilter);
     };
 
     const handleFeatureChange = (e: MouseEvent<HTMLButtonElement>, feature: string) => {
@@ -165,7 +163,7 @@ const CatalogPage = () => {
                                     <p>No campers found matching your criteria.</p>
                                 )}
                             </div>
-                            {items.length > 0 && (
+                            {items.length > 0 && totalCount > items.length &&  (
                                 <button className={css.loadMoreBtn} onClick={handleLoadMore}>
                                     Load more
                                 </button>

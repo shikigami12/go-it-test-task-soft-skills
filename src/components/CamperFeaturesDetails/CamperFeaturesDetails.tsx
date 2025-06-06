@@ -11,7 +11,7 @@ export const CamperFeaturesDetails = () => {
             <div className={css.featuresDetail}>
                 <div className={css.featuresList}>
                     {currentCamper?.features?.features?.length && currentCamper.features.features.map((feature, index) => (
-                        <Feature key={index} feature={feature}/>
+                        <Feature key={index} feature={feature} backgroundColor={"var(--gray-light-color)"}/>
                     ))}
                 </div>
 

@@ -14,6 +14,8 @@ interface CampersState {
         features: string[];
     };
     page: number;
+    perPage: number;
+    totalCount: number;
 }
 
 const initialState: CampersState = {
@@ -27,6 +29,8 @@ const initialState: CampersState = {
         features: [],
     },
     page: 1,
+    perPage: 6,
+    totalCount: 0
 };
 
 const mapCamperToCamperWithFeatures = (camper: Camper): Camper => {
@@ -128,6 +132,7 @@ export const fetchCampers = createAsyncThunk(
             const params: Record<string, string | boolean> = {};
 
             params.page = campers.page.toString();
+            params.limit = campers.perPage.toString();
 
             if (location) {
                 params.location = location;
@@ -144,7 +149,7 @@ export const fetchCampers = createAsyncThunk(
             }
 
             const response = await apiClient.getCampers(params);
-            return response.items.map(camper => mapCamperToCamperWithFeatures(camper));
+            return {total: response.total, campers: response.items.map(camper => mapCamperToCamperWithFeatures(camper))};
         } catch (error) {
             console.error('Error fetching campers:', error);
             return rejectWithValue('Failed to fetch campers');
@@ -176,7 +181,8 @@ const campersSlice = createSlice({
             state.filters.location = action.payload;
         },
         setFormFilter: (state, action: PayloadAction<string>) => {
-            state.filters.form = action.payload;
+            const form = action.payload;
+            state.filters.form = state.filters.form === form ? '' : form;
         },
         toggleFeatureFilter: (state, action: PayloadAction<string>) => {
             const feature = action.payload;
@@ -203,7 +209,12 @@ const campersSlice = createSlice({
             })
             .addCase(fetchCampers.fulfilled, (state, action) => {
                 state.isLoading = false;
-                state.items = action.payload;
+                // Merge new items with existing ones, avoiding duplicates
+                const newItems = action.payload.campers;
+                const existingIds = new Set(state.items.map(item => item.id));
+                const uniqueNewItems = newItems.filter(item => !existingIds.has(item.id));
+                state.items = [...state.items, ...uniqueNewItems];
+                state.totalCount = action.payload.total;
             })
             .addCase(fetchCampers.rejected, (state, action) => {
                 state.isLoading = false;

@@ -6,6 +6,7 @@
     padding: 44px;
     width: 630px;
     border-radius: var(--border-radius-sm);
+    box-sizing: border-box;
 }
 
 .featuresList {

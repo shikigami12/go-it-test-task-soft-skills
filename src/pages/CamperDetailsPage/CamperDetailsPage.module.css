@@ -1,5 +1,4 @@
 .detailsPage {
-    width: 100%;
     display: flex;
     flex-direction: column;
     padding: 48px 64px;
@@ -81,11 +80,12 @@
 
 .moreDetails {
     display: flex;
-    flex-direction: column;
-    gap: 16px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 40px;
 }
 
-.moreDetails .tabs {
+.tabs {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -93,9 +93,10 @@
     flex-direction: row;
     gap: 24px 40px;
     flex-wrap: wrap;
+    width: 100%;
 }
 
-.moreDetails .tabs::after {
+.tabs::after {
     content: "";
     border-bottom: 2px solid var(--gray-light-color);
     width: 100%;
@@ -103,7 +104,7 @@
     z-index: 100;
 }
 
-.moreDetails .tabs li {
+.tabs li {
     font-size: 20px;
     line-height: var(--line-height-percent-base);
     color: var(--main-color);
@@ -111,7 +112,7 @@
     position: relative;
 }
 
-.moreDetails .tabs li.active::after {
+.tabs li.active::after {
     content: "";
     border-bottom: 4px solid var(--button-color);
     width: 100%;
@@ -119,4 +120,31 @@
     top: 53px;
     left: 0;
     z-index: 101;
+}
+
+.bookingForm {
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--border-radius-sm);
+    border: 1px solid var(--gray-light-color);
+    gap: 8px;
+    width: 640px;
+    padding: 24px;
+    box-sizing: border-box;
+}
+
+.bookingTitle {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--main-color);
+    padding: 0;
+    margin: 0;
+}
+
+.bookingSubtitle {
+    font-size: 16px;
+    line-height: var(--line-height-percent-base);
+    color: var(--text-color);
+    margin: 0 0 24px 0;
+    padding: 0;
 }

@@ -1,0 +1,110 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    justify-content: center;
+    align-items: center;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.formGroup label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.formControl {
+    padding: 12px 16px;
+    border: none;
+    border-radius: var(--border-radius-sm);
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: var(--inputs-color);
+}
+
+.formControl:focus {
+    outline: none;
+    border-color: var(--button-color);
+}
+
+.errorMsg {
+    color: #e53e3e;
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+.submitButton {
+    width: 166px;
+    margin-top: 8px;
+    padding: 14px 60px;
+    background-color: var(--button-color);
+    color: var(--white-color);
+    border: none;
+    border-radius: var(--border-radius-xl);
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.submitButton:hover {
+    background-color: var(--button-hover-color, #F59256);
+}
+
+.submitButton:disabled {
+    background-color: var(--gray-color);
+    cursor: not-allowed;
+}
+
+.dateInputWrapper {
+    position: relative;
+    width: 100%;
+}
+
+.datePlaceholder {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #757575;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    font-size: 16px;
+}
+
+/* Hide placeholder when the input has value or is focused */
+.dateInputWrapper input:not([value=""]),
+.dateInputWrapper input:focus {
+    color: inherit;
+}
+
+.dateInputWrapper input:not([value=""]) + .datePlaceholder,
+.dateInputWrapper input:focus + .datePlaceholder {
+    opacity: 0;
+}
+
+/* Override default webkit styles for date input */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+input[type="date"]::-webkit-datetime-edit-fields-wrapper {
+    position: relative;
+    z-index: 2;
+}
+
+input[type="date"]:not(:focus):not(:valid) {
+    color: transparent;
+}
+

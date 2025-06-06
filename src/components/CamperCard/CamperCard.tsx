@@ -78,7 +78,7 @@ const CamperCard = ({camper}: CamperCardProps) => {
 
                 <div className={css.details}>
                     {camper.features?.features?.length && camper.features.features.map((feature, index) => (
-                        <Feature key={index} feature={feature} />
+                        <Feature key={index} feature={feature} backgroundColor={"var(--badges-color)"}/>
                     ))}
                 </div>
 
